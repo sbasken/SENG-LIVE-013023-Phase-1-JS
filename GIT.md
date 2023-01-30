@@ -45,7 +45,7 @@ Now that you have the repository cloned to your local machine, you'll be able to
 
 ## Before Beginning
 
-1. Click on the Fetch & Merge button on your fork of the repository on GitHub.
+1. Click on the Sync Fork button on your fork of the repository on GitHub and then press the Update Branch button. (if you don't see the button it means your fork is already up to date with the upstream repo and you have all lecture starter code on your fork)
 2. Run `git pull` from within the attached terminal of your local copy of the repository in VS Code.
 
 ![Fetch and Merge Into Git Pull](assets/fetch-and-merge-into-git-pull.gif)
