@@ -9,7 +9,7 @@
 
 | Lecture                          	| Notes 	| Videos 	| Starter 	| Solution 	|
 |----------------------------------	|:-----:	|--------	|---------	|----------	|
-| Functions & Scope                	|       	|        	|         	|          	|
+| Functions & Scope                	|   [Slides](https://raw.githack.com/learn-co-curriculum/SENG-LIVE-013023-Phase-1-JS/main/01_Functions_%26_Scope/assets/export/index.html)    	|        	|         	|          	|
 | DOM Manipulation                 	|       	|        	|         	|          	|
 | DOM Events                       	|       	|        	|         	|          	|
 | Communicating with the Server    	|       	|        	|         	|          	|
