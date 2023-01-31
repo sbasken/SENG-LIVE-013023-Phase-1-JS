@@ -10,7 +10,7 @@
 | Lecture                          	| Notes 	| Videos 	| Starter 	| Solution 	|
 |----------------------------------	|:-----:	|--------	|---------	|----------	|
 | Functions & Scope                	|   [Slides](https://raw.githack.com/learn-co-curriculum/SENG-LIVE-013023-Phase-1-JS/main/01_Functions_%26_Scope/assets/export/index.html)    	|    [Video](https://vimeo.com/794281710)    	|     [Starter Code](https://github.com/learn-co-curriculum/SENG-LIVE-013023-Phase-1-JS/tree/main/01_Functions_%26_Scope)    	|     [Solution Code](https://github.com/learn-co-curriculum/SENG-LIVE-013023-Phase-1-JS/compare/01_solution?expand=1)     	|
-| DOM Manipulation                 	|       	|        	|         	|          	|
+| DOM Manipulation                 	|  [Slides](https://raw.githack.com/learn-co-curriculum/SENG-LIVE-013023-Phase-1-JS/main/02_DOM_Manipulation/assets/export/index.html)     	|        	|         	|          	|
 | DOM Events                       	|       	|        	|         	|          	|
 | Communicating with the Server    	|       	|        	|         	|          	|
 | POST Requests                    	|       	|        	|         	|          	|
