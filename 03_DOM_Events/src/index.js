@@ -1,3 +1,4 @@
+const bookList = document.querySelector('#book-list');
 function formatPrice(price) {
   return '$' + Number.parseFloat(price).toFixed(2);
 }
@@ -12,9 +13,10 @@ function renderHeader(bookStore) {
 }
 
 function renderFooter(bookStore) {
-  document.querySelector('#store').textContent = bookStore.location;
+  document.querySelector('#location').textContent = bookStore.location;
   document.querySelector('#number').textContent = bookStore.number;
   document.querySelector('#address').textContent = bookStore.address;
+  document.querySelector('#hours').textContent = bookStore.hours;
 }
 
 // function: renderBook(book)
@@ -55,7 +57,7 @@ function renderBook(book) {
   btn.textContent = 'Delete';
   li.append(btn);
 
-  document.querySelector('#book-list').append(li);
+  bookList.append(li);
 }
 
 
