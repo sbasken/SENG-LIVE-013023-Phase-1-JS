@@ -1,18 +1,23 @@
+const bookList = document.querySelector('#book-list');
+const bookForm = document.querySelector('#book-form');
+const toggleBookFormButton = document.querySelector('#toggleForm');
+
 function formatPrice(price) {
   return '$' + Number.parseFloat(price).toFixed(2);
 }
 
-///////////////////
-// render functions
-///////////////////
+//////////////////////////////////////
+// render functions (DOM Manipulation)
+//////////////////////////////////////
 function renderHeader(bookStore) {
   document.querySelector('#store-name').textContent = bookStore.name;
 }
 
 function renderFooter(bookStore) {
+  document.querySelector('#store').textContent = bookStore.store;
   document.querySelector('#address').textContent = bookStore.address;
   document.querySelector('#number').textContent = bookStore.number;
-  document.querySelector('#store').textContent = bookStore.location;
+  document.querySelector('#hours').textContent = bookStore.hours;
 }
 
 // function: renderBook(book)
@@ -72,31 +77,27 @@ function renderBook(book) {
 }
 
 
-////////////////////////////////////////////////////////////////
-// Event Listeners/Handlers (Behavior => Data => Display)
-////////////////////////////////////////////////////////////////
-
-const toggleBookFormButton = document.querySelector('#toggleForm')
-const bookForm = document.querySelector('#book-form');
-
 function toggleBookForm() {
-  const bookFormHidden = bookForm.classList.toggle('collapsed');
-  if (bookFormHidden) {
+  const isBookFormHidden = bookForm.classList.toggle('collapsed');
+  if (isBookFormHidden) {
     toggleBookFormButton.textContent = "New Book";
   } else {
     toggleBookFormButton.textContent = "Hide Book Form";
   }
 }
 
+////////////////////////////////////////////////////////////////
+// Event Listeners/Handlers (Behavior => Data => Display)
+////////////////////////////////////////////////////////////////
+
 // hide and show the new book form when toggle buton is clicked
-toggleBookFormButton.addEventListener('click', (e) => {
-  toggleBookForm();
-});
+toggleBookFormButton.addEventListener('click', toggleBookForm);
 
 // also hide the form when it's visible and the escape key is pressed
 window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
-    if (!bookForm.classList.contains('collapsed')) {
+    const isVisible = !bookForm.classList.contains("collapsed");
+    if (isVisible) {
       toggleBookForm();
     }
   }
@@ -106,7 +107,7 @@ window.addEventListener('keydown', (e) => {
 bookForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  const book = {
+  const newBook = {
     title: e.target.title.value,
     author: e.target.author.value,
     price: parseFloat(e.target.price.value),
@@ -117,7 +118,7 @@ bookForm.addEventListener('submit', (e) => {
   
   e.target.reset(); // clear form
   toggleBookForm(); // hide book form
-  renderBook(book); // display new book to DOM
+  renderBook(newBook); // display new book to DOM
 })
 
 

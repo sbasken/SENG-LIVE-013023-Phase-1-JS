@@ -107,6 +107,25 @@ Method | CRUD Action | Description
 
 ---
 
+### JSON (JavaScript Object Notation)
+
+<img 
+  src="https://res.cloudinary.com/dlzuobe8h/image/upload/v1665769374/l7GjO7D3eyP2fDOG1wv6bsiTPWAzeYTlYJk8mCWlCXFpyXbDGVtvezulzA7fQ1---9Vs5GKpPnfAoVjX-QeezNH87M6HHcbVb9NViYGEkMWakQDJBi0k69c5fKeBiBQck5PQup45-dlVsjlc4q8uFeG5tJACZ60nwJ7ywjRjyLg6Zcj7775mBYqAr6BE_nw_m4zhfz.png" 
+  alt="JSON example" 
+  style="width: 80%;"
+/>
+
+<aside class="notes">
+
+JSON is:
+- a lightweight data storage for data exchange 
+- it works with any language 
+- and it's easy to read
+
+</aside>
+
+---
+
 ### Synchronous vs Asynchronous Code examples
 
 <div style="display: flex; flex-direction: row">
@@ -175,24 +194,16 @@ Method | CRUD Action | Description
 
 * <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" rel="noopener noreferrer" target="_blank">MDN - Promise</a> * <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" rel="noopener noreferrer" target="_blank">MDN - Using Fetch</a>
 
+
 ---
 
-### JSON (JavaScript Object Notation)
+### For our application
 
 <img 
-  src="https://res.cloudinary.com/dlzuobe8h/image/upload/v1665769374/l7GjO7D3eyP2fDOG1wv6bsiTPWAzeYTlYJk8mCWlCXFpyXbDGVtvezulzA7fQ1---9Vs5GKpPnfAoVjX-QeezNH87M6HHcbVb9NViYGEkMWakQDJBi0k69c5fKeBiBQck5PQup45-dlVsjlc4q8uFeG5tJACZ60nwJ7ywjRjyLg6Zcj7775mBYqAr6BE_nw_m4zhfz.png" 
-  alt="JSON example" 
-  style="width: 80%;"
+  src="./fetch-diagram.drawio.svg"
+  alt="fetch diagram"
+  style="width: 100%"
 />
-
-<aside class="notes">
-
-JSON is:
-- a lightweight data storage for data exchange 
-- it works with any language 
-- and it's easy to read
-
-</aside>
 
 ---
 
@@ -258,8 +269,8 @@ touch db.json
 ```json
 {
   "posts": [
-    { title: "JSON-server is really cool" },
-    { title: "JSON-server allows you to mock an API server by creating a single file!"}
+    { "title": "JSON-server is really cool" },
+    { "title": "JSON-server allows you to mock an API server by creating a single file!"}
   ]
 }
 ```
@@ -310,13 +321,5 @@ Some error occurred Error: listen EADDRINUSE: address already in use 127.0.0.1:3
 #### Cure
 
 ```
-kill $(lsof -t -i:3000)
+npx kill-port 3000
 ```
-
-#### Regimen 
-
-```
-alias k3000="kill $(lsof -t -i:3000)"
-```
-
-I've created an alias for this fix, `k3000`, so I can just type `k3000` in my terminal to run this command. To add your own alias, you'll want to put this code in your terminal profile: `~/.zshrc`, `~/.bash_profile`, or `~/.profile`

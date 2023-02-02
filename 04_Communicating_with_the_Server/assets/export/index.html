@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="libs/reveal.js/4.3.1/reset.css">
   <link rel="stylesheet" href="libs/reveal.js/4.3.1/reveal.css">
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
   <!-- highlight Theme -->
   
@@ -222,6 +223,28 @@ input {
     
         <section >
             
+            <h3>JSON (JavaScript Object Notation)</h3>
+<p><img 
+  src="https://res.cloudinary.com/dlzuobe8h/image/upload/v1665769374/l7GjO7D3eyP2fDOG1wv6bsiTPWAzeYTlYJk8mCWlCXFpyXbDGVtvezulzA7fQ1---9Vs5GKpPnfAoVjX-QeezNH87M6HHcbVb9NViYGEkMWakQDJBi0k69c5fKeBiBQck5PQup45-dlVsjlc4q8uFeG5tJACZ60nwJ7ywjRjyLg6Zcj7775mBYqAr6BE_nw_m4zhfz.png" 
+  alt="JSON example" 
+  style="width: 80%;"
+/></p>
+<aside class="notes">
+<p>JSON is:</p>
+<ul>
+<li>a lightweight data storage for data exchange</li>
+<li>it works with any language</li>
+<li>and it’s easy to read</li>
+</ul>
+</aside>
+            </section>
+    
+
+
+
+    
+        <section >
+            
             <h3>Synchronous vs Asynchronous Code examples</h3>
 <div style="display: flex; flex-direction: row">
   <div style="width: 50%">
@@ -312,20 +335,13 @@ input {
     
         <section >
             
-            <h3>JSON (JavaScript Object Notation)</h3>
+            <h3>For our application</h3>
 <p><img 
-  src="https://res.cloudinary.com/dlzuobe8h/image/upload/v1665769374/l7GjO7D3eyP2fDOG1wv6bsiTPWAzeYTlYJk8mCWlCXFpyXbDGVtvezulzA7fQ1---9Vs5GKpPnfAoVjX-QeezNH87M6HHcbVb9NViYGEkMWakQDJBi0k69c5fKeBiBQck5PQup45-dlVsjlc4q8uFeG5tJACZ60nwJ7ywjRjyLg6Zcj7775mBYqAr6BE_nw_m4zhfz.png" 
-  alt="JSON example" 
-  style="width: 80%;"
+  src="./fetch-diagram.drawio.svg"
+  alt="fetch diagram"
+  style="width: 100%"
 /></p>
-<aside class="notes">
-<p>JSON is:</p>
-<ul>
-<li>a lightweight data storage for data exchange</li>
-<li>it works with any language</li>
-<li>and it’s easy to read</li>
-</ul>
-</aside>
+
             </section>
     
 
@@ -404,8 +420,8 @@ touch db.json
 <p><small>copy and paste the below into the assets/db.json file:</small></p>
 <pre><code class="language-json">{
   &quot;posts&quot;: [
-    { title: &quot;JSON-server is really cool&quot; },
-    { title: &quot;JSON-server allows you to mock an API server by creating a single file!&quot;}
+    { &quot;title&quot;: &quot;JSON-server is really cool&quot; },
+    { &quot;title&quot;: &quot;JSON-server allows you to mock an API server by creating a single file!&quot;}
   ]
 }
 </code></pre>
@@ -453,12 +469,8 @@ touch db.json
 <pre><code>Some error occurred Error: listen EADDRINUSE: address already in use 127.0.0.1:3000
 </code></pre>
 <h4>Cure</h4>
-<pre><code>kill $(lsof -t -i:3000)
+<pre><code>npx kill-port 3000
 </code></pre>
-<h4>Regimen</h4>
-<pre><code>alias k3000=&quot;kill $(lsof -t -i:3000)&quot;
-</code></pre>
-<p>I’ve created an alias for this fix, <code>k3000</code>, so I can just type <code>k3000</code> in my terminal to run this command. To add your own alias, you’ll want to put this code in your terminal profile: <code>~/.zshrc</code>, <code>~/.bash_profile</code>, or <code>~/.profile</code></p>
 
             </section>
     
