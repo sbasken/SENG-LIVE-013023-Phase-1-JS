@@ -1,3 +1,9 @@
+const bookList = document.querySelector('#book-list');
+const bookForm = document.querySelector('#book-form');
+const storeForm = document.querySelector('#store-form');
+const toggleBookFormButton = document.querySelector('#toggleBookForm');
+const toggleStoreFormButton = document.querySelector('#toggleStoreForm');
+
 //////////////////////////////////////////////////////////
 // Fetch Data & Call render functions to populate the DOM
 //////////////////////////////////////////////////////////
@@ -21,17 +27,18 @@ getJSON("http://localhost:3000/books")
   .catch(renderError);
 
 
-///////////////////
-// render functions
-///////////////////
+//////////////////////////////////////////
+// render functions (for DOM Manipulation)
+//////////////////////////////////////////
 function renderHeader(bookStore) {
   document.querySelector('#store-name').textContent = bookStore.name;
 }
 
 function renderFooter(bookStore) {
+  document.querySelector('#location').textContent = bookStore.location;
   document.querySelector('#address').textContent = bookStore.address;
   document.querySelector('#number').textContent = bookStore.number;
-  document.querySelector('#store').textContent = bookStore.location;
+  document.querySelector('#hours').textContent = bookStore.hours;
 }
 
 // adds options to a select tag that allows swapping between different stores
@@ -81,12 +88,15 @@ function renderBook(book) {
   
   const h3 = document.createElement('h3');
   h3.textContent = book.title;
+  li.append(h3);
 
   const pAuthor = document.createElement('p');
   pAuthor.textContent = book.author;
+  li.append(pAuthor);
   
   const pPrice = document.createElement('p');
   pPrice.textContent = `${formatPrice(book.price)}`;
+  li.append(pPrice);
   
   const pStock = document.createElement('p');
   pStock.className = "grey";
@@ -97,10 +107,12 @@ function renderBook(book) {
   } else {
     pStock.textContent = "In stock"
   }
+  li.append(pStock);
   
   const img = document.createElement('img');
   img.src = book.imageUrl;
   img.alt = `${book.title} cover`;
+  li.append(img);
 
   const btn = document.createElement('button');
   btn.textContent = 'Delete';
@@ -108,9 +120,9 @@ function renderBook(book) {
   btn.addEventListener('click', (e) => {
     li.remove();
   })
+  li.append(btn);
 
-  li.append(h3, pAuthor, pPrice, pStock, img, btn);
-  document.querySelector('#book-list').append(li);
+  bookList.append(li);
 }
 
 function renderError(error) {
@@ -151,10 +163,6 @@ function fillIn(form, data) {
 
 // UI Events
 ////////////////////////////////////////////////////////////////
-const toggleBookFormButton = document.querySelector('#toggleBookForm');
-const bookForm = document.querySelector('#book-form');
-const toggleStoreFormButton = document.querySelector('#toggleStoreForm');
-const storeForm = document.querySelector('#store-form');
 
 function toggleBookForm() {
   const bookFormHidden = bookForm.classList.toggle('collapsed');
