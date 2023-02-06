@@ -129,6 +129,7 @@ function renderBook(book) {
   li.append(btn);
 
   bookList.append(li);
+  return li;
 }
 
 function renderError(error) {
