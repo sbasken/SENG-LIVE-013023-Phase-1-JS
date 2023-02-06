@@ -14,7 +14,7 @@ function renderHeader(bookStore) {
 }
 
 function renderFooter(bookStore) {
-  document.querySelector('#store').textContent = bookStore.store;
+  document.querySelector('#location').textContent = bookStore.store;
   document.querySelector('#address').textContent = bookStore.address;
   document.querySelector('#number').textContent = bookStore.number;
   document.querySelector('#hours').textContent = bookStore.hours;
@@ -127,9 +127,19 @@ bookForm.addEventListener('submit', (e) => {
 // call render functions to populate the DOM
 ////////////////////////////////////////////
 
-renderHeader(bookStore)
-renderFooter(bookStore)
-bookStore.inventory.forEach(renderBook)
+// renderHeader(bookStore)
+// renderFooter(bookStore)
+// bookStore.inventory.forEach(renderBook)
 
 
+// communicating with the server with fetch
+fetch('http://localhost:3000/books')
+  .then(res => res.json())
+  .then(books => books.forEach(renderBook));
 
+fetch('http://localhost:3000/stores/1')
+  .then(res => res.json())
+  .then(bookStore => {
+    renderHeader(bookStore)
+    renderFooter(bookStorecd)
+  })
