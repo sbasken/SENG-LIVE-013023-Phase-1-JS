@@ -1,7 +1,29 @@
 const bookList = document.querySelector('#book-list');
+const bookForm = document.querySelector('#book-form');
+const toggleBookForm = document.querySelector('#toggleForm')
+
+
 function formatPrice(price) {
   return '$' + Number.parseFloat(price).toFixed(2);
 }
+
+// helper function
+function fillIn(form, data) {
+  form.title.value = data.title;
+  form.author.value = data.author;
+  form.price.value = data.price;
+  form.inventory.value = data.inventory;
+  form.imageUrl.value = data.imageUrl;
+}
+
+fillIn(bookForm, {
+  title: "Designing Data-Intensive Applications",
+  author: "Martin Kleppmann",
+  price: 22,
+  imageUrl: "https://img.thriftbooks.com/api/images/i/m/0F0215CB69CC543433186FF1D4C95DD17CF6B955.jpg",
+  inventory: 5
+
+})
 
 //////////////////////////////////////
 // render functions  (Data => Display)
@@ -57,6 +79,10 @@ function renderBook(book) {
   btn.textContent = 'Delete';
   li.append(btn);
 
+  btn.addEventListener('click', () => {
+    li.remove()
+  })
+
   bookList.append(li);
 }
 
@@ -69,3 +95,46 @@ renderHeader(bookStore);
 renderFooter(bookStore);
 bookStore.inventory.forEach(renderBook);
 
+
+////////////////////////////////////////////
+// eventlistener
+////////////////////////////////////////////
+
+bookForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  // renderBook expects an argument that looks like this;
+  // {
+  //   id:1,
+  //   title: 'Eloquent JavaScript: A Modern Introduction to Programming',
+  //   author: 'Marjin Haverbeke',
+  //   price: 10.00,
+  //   reviews: [{userID: 1, content:'Good book, but not great for new coders'}],
+  //   inventory: 10,
+  //   imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/51IKycqTPUL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg',
+  // }
+  const newBook = {
+    title: e.target.title.value,
+    author: e.target.author.value,
+    price: parseInt(e.target.price.value),
+    review: [],
+    inventory: parseInt(e.target.inventory.value),
+    imgUrl: e.target.imageUrl.value,
+  }
+  renderBook(newBook)
+})
+
+
+//hide and show the book form when clicked
+
+toggleBookForm.addEventListener('click', (e) => {
+  const hidden = bookForm.classList.toggle('collapsed');
+  if (hidden) {
+    e.target.innerText = "Open Book Form"
+  } else {
+    e.target.innerText = "Hide Book Form"
+  }
+})
+
+////////////////////////////////////////////
+// 
+////////////////////////////////////////////

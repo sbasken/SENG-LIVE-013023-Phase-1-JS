@@ -76,6 +76,10 @@ main {
   font-weight: bold;
 }
 
+button, [type="submit"] {
+  cursor: pointer;
+}
+
 #form-wrapper {
   border-top: solid;
   border-bottom: solid;
