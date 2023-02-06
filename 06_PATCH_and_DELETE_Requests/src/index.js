@@ -1,3 +1,11 @@
+const bookList = document.querySelector('#book-list');
+const bookForm = document.querySelector('#book-form');
+const storeForm = document.querySelector('#store-form');
+const toggleBookFormButton = document.querySelector('#toggleBookForm');
+const toggleStoreFormButton = document.querySelector('#toggleStoreForm');
+const editStoreButton = document.querySelector('#edit-store');
+let storeEditMode = false;
+
 //////////////////////////////////////////////////////////
 // Fetch Data & Call render functions to populate the DOM
 //////////////////////////////////////////////////////////
@@ -120,7 +128,7 @@ function renderBook(book) {
   })
   li.append(btn);
 
-  document.querySelector('#book-list').append(li);
+  bookList.append(li);
 }
 
 function renderError(error) {
@@ -150,8 +158,7 @@ function fillIn(form, data) {
 
 // New Function to populate the store form with a store's data to update 
 function populateStoreEditForm(store) {
-  const form = document.querySelector('#store-form');
-  fillIn(form, store);
+  fillIn(storeForm, store);
   showStoreForm();
 }
 
@@ -160,66 +167,10 @@ function formatPrice(price) {
   return `$${formattedPrice}`;
 }
 
-// Event Handlers
-
-// Book Form button
-const toggleBookFormButton = document.querySelector('#toggleBookForm');
-const bookForm = document.querySelector('#book-form');
-let bookFormVisible = false;
-
-function toggleBookForm() {
-  if (bookFormVisible) {
-    hideBookForm();
-  } else {
-    showBookForm();
-  }
-}
-
-function showBookForm() {
-  bookFormVisible = true;
-  bookForm.classList.remove('collapsed');
-  toggleBookFormButton.textContent = "Hide Book form";
-}
-
-function hideBookForm() {
-  bookFormVisible = false;
-  bookForm.classList.add('collapsed');
-  toggleBookFormButton.textContent = "New Book";
-}
-
+// Event Listeners/Handlers
 toggleBookFormButton.addEventListener('click', toggleBookForm);
+toggleStoreFormButton.addEventListener('click', toggleStoreForm)
 
-// Store Form button
-const toggleStoreFormButton = document.querySelector('#toggleStoreForm');
-const storeForm = document.querySelector('#store-form');
-let storeFormVisible = false;
-
-function toggleStoreForm() {
-  if (storeFormVisible) {
-    hideStoreForm();
-  } else {
-    showStoreForm();
-  }
-}
-
-function hideStoreForm() {
-  document.querySelector('#store-form').classList.add('collapsed');
-  storeFormVisible = false;
-  storeEditMode = false;
-  storeForm.reset();
-  toggleStoreFormButton.textContent = "New Store";
-}
-
-function showStoreForm() {
-  document.querySelector('#store-form').classList.remove('collapsed');
-  storeFormVisible = true;
-  toggleStoreFormButton.textContent = "Hide Store form";
-  storeForm.querySelector('[type="submit"]').value = storeEditMode ? "SAVE STORE" : "ADD STORE";
-}
-
-toggleStoreFormButton.addEventListener('click', toggleStoreForm);
-
-// allow escape key to hide either form
 window.addEventListener('keydown', (e) => {
   if (e.key === "Escape") {
     hideStoreForm();
@@ -227,7 +178,6 @@ window.addEventListener('keydown', (e) => {
   }
 })
 
-// book form submit
 bookForm.addEventListener('submit', (e) => { 
   e.preventDefault();
   // pull the info for the new book out of the form
@@ -248,8 +198,6 @@ bookForm.addEventListener('submit', (e) => {
     })
     .catch(renderError);  
 })
-
-// store form submit
 
 storeForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -273,14 +221,56 @@ storeForm.addEventListener('submit', (e) => {
   e.target.reset();
 })
 
-// edit store button
-const editStoreBtn = document.querySelector('#edit-store');
-let storeEditMode = false;
-
-editStoreBtn.addEventListener('click', (e) => {
+editStoreButton.addEventListener('click', (e) => {
   const selectedStoreId = document.querySelector('#store-selector').value;
   storeEditMode = true;
   getJSON(`http://localhost:3000/stores/${selectedStoreId}`)
     .then(populateStoreEditForm)
 })
 
+
+// Book Form UI
+
+function toggleBookForm() {
+  const bookFormHidden = bookForm.classList.contains('collapsed')
+  if (bookFormHidden) {
+    showBookForm();
+  } else {
+    hideBookForm();
+  }
+}
+
+function showBookForm() {
+  bookForm.classList.remove('collapsed');
+  toggleBookFormButton.textContent = "Hide Book form";
+}
+
+function hideBookForm() {
+  bookForm.classList.add('collapsed');
+  toggleBookFormButton.textContent = "New Book";
+}
+
+
+// Store Form UI
+
+function toggleStoreForm() {
+  let storeFormHidden = storeForm.classList.contains('collapsed');
+  if (storeFormHidden) {
+    showStoreForm();
+  } else {
+    hideStoreForm();
+  }
+}
+
+function hideStoreForm() {
+  storeForm.classList.add('collapsed');
+  storeEditMode = false;
+  storeForm.reset();
+  toggleStoreFormButton.textContent = "New Store";
+}
+
+function showStoreForm() {
+  storeForm.classList.remove('collapsed');
+  toggleStoreFormButton.textContent = "Hide Store form";
+  storeForm.querySelector('[type="submit"]').value = storeEditMode ? "SAVE STORE" : "ADD STORE";
+}
